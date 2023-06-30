@@ -91,7 +91,7 @@ console.log(typeof str1);
 
 //câu e
 let str2 = "3.14";
-let number3 = parseFloat(str2);
+let number3 = +str2;
 console.log(number3);
 console.log(typeof number3);
 
