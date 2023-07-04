@@ -11,9 +11,9 @@ Nhân (*).
 Chia (/).
 Chia lấy phần dư (%).
 Lũy thừa (**).
-"
-^ so
-~ nghịch bit
+Tăng (++).
+Giảm (--).
+Bit (bitwise): AND (&), OR (|), XOR (^), NOT (~), Left shift (<<), Right shift (>>), Zero-fill right shift (>>>).
 
 b) Quan hệ
 Bằng (==).
@@ -22,13 +22,13 @@ Lớn hơn (>).
 Nhỏ hơn (<).
 Lớn hơn hoặc bằng (>=).
 Nhỏ hơn hoặc bằng (<=).
-===
-!==
+So sánh cùng kiểu dữ liệu (===).
+So sánh khác kiểu dữ liệu (!==).
 
 c) Logic
 Và (&&).
 Hoặc (||).
-Phủ định (!).
+Phủ định (!, not).
 
 
 
@@ -41,11 +41,11 @@ e)   (a && b) || c
 f)   (a || b) && c 
 
 a) a và b đều true.
-b) a hoặc b true.
-c) a và b đều false.
+b) a và b ít nhất 1 true.
+c) a và b ít nhất 1 false.
 d) a và b đều false.
 e) c true thì a và b true hay false đều được, c false thì a và b đều phải true.
-f) c true, còn a và b thì ít nhất 1 biến có giá trị true.
+f) c true, còn a và b thì ít nhất 1 true.
 
 
 
