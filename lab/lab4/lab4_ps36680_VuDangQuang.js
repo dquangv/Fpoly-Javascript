@@ -1,87 +1,87 @@
-/*Bài 1: viết chương trình thực hiện các yêu cầu sau:
-a) Định nghĩa kiểu dữ liệu phân số. Kiểu dữ liệu này có 2 properties là tử số và mẫu số
-b) In ra phân số dạng: tử/mẫu. Ví dụ: 4/5
-c) Nghịch đảo phân số. VÍ dụ: 4/5  5/4
-d) Định nghĩa phép cộng, trừ, nhân, chia 2 phân số. Kết quả trả về là phân số mới.
-e) Tối giản phân số. Ví dụ: 3/9  1/3.
-*/
+// /*Bài 1: viết chương trình thực hiện các yêu cầu sau:
+// a) Định nghĩa kiểu dữ liệu phân số. Kiểu dữ liệu này có 2 properties là tử số và mẫu số
+// b) In ra phân số dạng: tử/mẫu. Ví dụ: 4/5
+// c) Nghịch đảo phân số. VÍ dụ: 4/5  5/4
+// d) Định nghĩa phép cộng, trừ, nhân, chia 2 phân số. Kết quả trả về là phân số mới.
+// e) Tối giản phân số. Ví dụ: 3/9  1/3.
+// */
 
-//a) Định nghĩa kiểu dữ liệu phân số. Kiểu dữ liệu này có 2 properties là tử số và mẫu số.
-class PhanSo {
-    constructor(tuSo, mauSo) {
-        this.tuSo = tuSo;
-        this.mauSo = mauSo;
-    }
+// //a) Định nghĩa kiểu dữ liệu phân số. Kiểu dữ liệu này có 2 properties là tử số và mẫu số.
+// class PhanSo {
+//     constructor(tuSo, mauSo) {
+//         this.tuSo = tuSo;
+//         this.mauSo = mauSo;
+//     }
 
-    //b) In ra phân số dạng: tử/mẫu.
-    toString() {
-        return `${this.tuSo}/${this.mauSo}`;
-    }
+//     //b) In ra phân số dạng: tử/mẫu.
+//     toString() {
+//         return `${this.tuSo}/${this.mauSo}`;
+//     }
 
-    //c) Nghịch đảo phân số.
-    nghichDao() {
-        return new PhanSo(this.mauSo, this.tuSo);
-    }
+//     //c) Nghịch đảo phân số.
+//     nghichDao() {
+//         return new PhanSo(this.mauSo, this.tuSo);
+//     }
 
-    //d) Định nghĩa phép cộng, trừ, nhân, chia 2 phân số. Kết quả trả về là phân số mới.
-    cong(PhanSoHai) {
-        const tuso = this.tuSo * PhanSoHai.mauSo + PhanSoHai.tuSo * this.mauSo;
-        const mauso = this.mauSo * PhanSoHai.mauSo;
-        return new PhanSo(tuso, mauso);
-    }
+//     //d) Định nghĩa phép cộng, trừ, nhân, chia 2 phân số. Kết quả trả về là phân số mới.
+//     cong(PhanSoHai) {
+//         const tuso = this.tuSo * PhanSoHai.mauSo + PhanSoHai.tuSo * this.mauSo;
+//         const mauso = this.mauSo * PhanSoHai.mauSo;
+//         return new PhanSo(tuso, mauso);
+//     }
 
-    tru(PhanSoHai) {
-        const tuso = this.tuSo * PhanSoHai.mauSo - PhanSoHai.tuSo * this.mauSo;
-        const mauso = this.mauSo * PhanSoHai.mauSo;
-        return new PhanSo(tuso, mauso);
-    }
+//     tru(PhanSoHai) {
+//         const tuso = this.tuSo * PhanSoHai.mauSo - PhanSoHai.tuSo * this.mauSo;
+//         const mauso = this.mauSo * PhanSoHai.mauSo;
+//         return new PhanSo(tuso, mauso);
+//     }
 
-    nhan(PhanSoHai) {
-        const tuso = this.tuSo * PhanSoHai.tuSo;
-        const mauso = this.mauSo * PhanSoHai.mauSo;
-        return new PhanSo(tuso, mauso);
-    }
+//     nhan(PhanSoHai) {
+//         const tuso = this.tuSo * PhanSoHai.tuSo;
+//         const mauso = this.mauSo * PhanSoHai.mauSo;
+//         return new PhanSo(tuso, mauso);
+//     }
 
-    chia(PhanSoHai) {
-        const tuso = this.tuSo * PhanSoHai.mauSo;
-        const mauso = this.mauSo * PhanSoHai.tuSo;
-        return new PhanSo(tuso, mauso);
-    }
+//     chia(PhanSoHai) {
+//         const tuso = this.tuSo * PhanSoHai.mauSo;
+//         const mauso = this.mauSo * PhanSoHai.tuSo;
+//         return new PhanSo(tuso, mauso);
+//     }
 
-    //e) Tối giản phân số.
-    UCLN(a, b) {
-        if (b === 0) {
-            return a;
-        }
-        //Thuật toán Euclipse (tìm ước chung lớn nhất bằng cách chia lấy dư).
-        return this.UCLN(b, a % b);
-    }
+//     //e) Tối giản phân số.
+//     UCLN(a, b) {
+//         if (b === 0) {
+//             return a;
+//         }
+//         //Thuật toán Euclipse (tìm ước chung lớn nhất bằng cách chia lấy dư).
+//         return this.UCLN(b, a % b);
+//     }
 
-    toiGian() {
-        const ucln = this.UCLN(this.tuSo, this.mauSo);
-        const tuso = this.tuSo / ucln;
-        const mauso = this.mauSo / ucln;
-        return new PhanSo(tuso, mauso);
-    }
-}
+//     toiGian() {
+//         const ucln = this.UCLN(this.tuSo, this.mauSo);
+//         const tuso = this.tuSo / ucln;
+//         const mauso = this.mauSo / ucln;
+//         return new PhanSo(tuso, mauso);
+//     }
+// }
 
-const tuSo = +prompt('Nhập tử số');
-const mauSo = +prompt('Nhập mẫu số');
-const phanSo = new PhanSo(tuSo, mauSo);
+// const tuSo = +prompt('Nhập tử số');
+// const mauSo = +prompt('Nhập mẫu số');
+// const phanSo = new PhanSo(tuSo, mauSo);
 
-console.log(`Phân số: ${phanSo.toString()}`);
-console.log(`Nghịch đảo: ${phanSo.nghichDao().toString()}`);
+// console.log(`Phân số: ${phanSo.toString()}`);
+// console.log(`Nghịch đảo: ${phanSo.nghichDao().toString()}`);
 
-const tuSo2 = +prompt('Nhập tử số phân số thứ 2');
-const mauSo2 = +prompt('Nhập mẫu số phân số thứ 2');
-const phanSo2 = new PhanSo(tuSo2, mauSo2);
+// const tuSo2 = +prompt('Nhập tử số phân số thứ 2');
+// const mauSo2 = +prompt('Nhập mẫu số phân số thứ 2');
+// const phanSo2 = new PhanSo(tuSo2, mauSo2);
 
-console.log(`${phanSo.tuSo}/${phanSo.mauSo} + ${phanSo2.tuSo}/${phanSo2.mauSo} = ${phanSo.cong(phanSo2).toString()}`);
-console.log(`${phanSo.tuSo}/${phanSo.mauSo} - ${phanSo2.tuSo}/${phanSo2.mauSo} = ${phanSo.tru(phanSo2).toString()}`);
-console.log(`${phanSo.tuSo}/${phanSo.mauSo} * ${phanSo2.tuSo}/${phanSo2.mauSo} = ${phanSo.nhan(phanSo2).toString()}`);
-console.log(`${phanSo.tuSo}/${phanSo.mauSo} / ${phanSo2.tuSo}/${phanSo2.mauSo} = ${phanSo.chia(phanSo2).toString()}`);
+// console.log(`${phanSo.tuSo}/${phanSo.mauSo} + ${phanSo2.tuSo}/${phanSo2.mauSo} = ${phanSo.cong(phanSo2).toString()}`);
+// console.log(`${phanSo.tuSo}/${phanSo.mauSo} - ${phanSo2.tuSo}/${phanSo2.mauSo} = ${phanSo.tru(phanSo2).toString()}`);
+// console.log(`${phanSo.tuSo}/${phanSo.mauSo} * ${phanSo2.tuSo}/${phanSo2.mauSo} = ${phanSo.nhan(phanSo2).toString()}`);
+// console.log(`${phanSo.tuSo}/${phanSo.mauSo} / ${phanSo2.tuSo}/${phanSo2.mauSo} = ${phanSo.chia(phanSo2).toString()}`);
 
-console.log(`Phân số thứ 1 tối giản: ${phanSo.toiGian()}`);
+// console.log(`Phân số thứ 1 tối giản: ${phanSo.toiGian()}`);
 
 
 
@@ -110,6 +110,12 @@ class Item {
         this.gia = gia;
         this.soLuong = soLuong;
     }
+
+    //b) In thông tin món hàng với định dạng: ID/name/giá/số lượng.
+    inMonHang() {
+        //padEnd (chèn thêm kí tự khoảng trắng vào sau để đảm bảo đủ kí tự), tương tự với padStart, cả 2 chỉ áp dụng với kiểu dữ liệu string.
+        console.log("%s %s %s %s", this.ID.padEnd(10), this.name.padEnd(20), this.gia.toString().padEnd(20), this.soLuong.toString().padStart(5));
+    }
 }
 
 class Cart {
@@ -118,17 +124,11 @@ class Cart {
         this.total = 0;
     }
 
-    //b) In thông tin món hàng với định dạng: ID/name/giá/số lượng.
-    inMonHang(item) {
-        //padEnd (chèn thêm kí tự khoảng trắng vào sau để đảm bảo đủ kí tự), tương tự với padStart, cả 2 chỉ áp dụng với kiểu dữ liệu string.
-        console.log("%s %s %s %s", item.ID.padEnd(10), item.name.padEnd(20), item.gia.toString().padEnd(20), item.soLuong.toString().padStart(5));
-    }
-
     //c) In thông tin của giỏ hàng.
     inGioHang() {
         //duyệt giá trị của mảng nên dùng for of, duyệt chỉ số thì dùng for in.
         for (let item of this.items) {
-            this.inMonHang(item);
+            item.inMonHang();
         }
         console.log(`total: ${this.total}`);
     }
@@ -146,6 +146,7 @@ class Cart {
                 return i;
             }
         }
+        
         //nếu đã return i thì không chạy dòng này, return không bị ghi đè.
         return null;
     }
@@ -192,7 +193,7 @@ for (let i = 0; i < number; i++) {
     //câu d.
     cart.themHang(monHang);
     //câu b.
-    cart.inMonHang(monHang);
+    monHang.inMonHang();
 }
 
 //câu c.
