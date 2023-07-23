@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .calculator {
+            width: 300px;
+            border: 1px solid #969696;
+            padding: 10px;
+            margin: 0 auto;
+        }
+
+        .calculator input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        .calculator button {
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .calculator .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .calculator p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display">
+        <div class="row">
+            <button class="operator">7</button>
+            <button class="operator">8</button>
+            <button class="operator">9</button>
+            <button class="operator">+</button>
+        </div>
+        <div class="row">
+            <button class="operator">4</button>
+            <button class="operator">5</button>
+            <button class="operator">6</button>
+            <button class="operator">-</button>
+        </div>
+        <div class="row">
+            <button class="operator">1</button>
+            <button class="operator">2</button>
+            <button class="operator">3</button>
+            <button class="operator">&#215;</button>
+        </div>
+        <div class="row">
+            <button class="operator">0</button>
+            <button class="clear">C</button>
+            <button class="calculate">=</button>
+            <button class="operator">&#247;</button>
+        </div>
+        <p id="result"></p>
+    </div>
+
+    <script src="file.js"></script>
+</body>
+</html>
