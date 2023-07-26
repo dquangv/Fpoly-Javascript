@@ -7,8 +7,8 @@
 
 - Scope
 + var:
-nếu biến được khai báo bên ngoài function thì có phạm vi global (dùng ở đâu cũng được).
-nếu biến được khai báo bên trong function thì có phạm vi function (chỉ dùng được bên trong function).
+nếu biến được khai báo bên ngoài function thì có phạm vi global.
+nếu biến được khai báo bên trong function thì có phạm vi function.
 + let và const:
 phạm vi của biến let và const là block (trong ngoặc nhọn {}).
 
@@ -46,15 +46,12 @@ console.log(y) chạy được và cho ra kết quả NaN.
 biến var x được khai báo và gán giá trị sau khi thực hiện phép tính nhưng nhờ tính chất hoisting, x được đẩy lên trước và khai báo với giá trị là undefined, khi cộng undefined với giá trị khác thì kết quả là NaN (Not a number).
 
 d)
-code chạy được.
-tương tự như câu b, x và y đều là kiểu dữ liệu số và nằm trong cùng một phạm vi nên có thể thực hiện phép tính đúng như mong đợi, biến var có thể được khai báo lại trong cùng phạm vi (scope) và vẫn giữ giá trị hiện tại, do đó "var x = x + y" khai báo lại biến x và gán giá trị bằng tổng của giá trị hiện tại của x (1) và y (2).
+code báo lỗi vì không thể khai báo lại biến (x) đã được khai báo bằng 'let' trong cùng một phạm vi.
 
 e)
 code báo lỗi.
 biến y được khai báo với từ khoá let nên không thể khai báo lại.
 */
-
-
 
 /*
     Bài 3: hãy viết các câu lệnh thực hiện các yêu cầu sau: (nếu có nhiều cách viết thì chọn 1 cách và ghi ra)

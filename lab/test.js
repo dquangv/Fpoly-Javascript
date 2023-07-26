@@ -55,14 +55,14 @@ console.log(arr.sort((a, b) => a - b));
 console.log(arr[arr.length - 1] * arr[arr.length - 2] * arr[arr.length - 3] >= arr[arr.length - 1] * arr[0] * arr[1] ? `${arr[arr.length - 1]} * ${arr[arr.length - 2]} * ${arr[arr.length - 3]} = ${arr[arr.length - 1] * arr[arr.length - 2] * arr[arr.length - 3]}` : `${arr[arr.length - 1]} * ${arr[0]} * ${arr[1]} = ${arr[arr.length - 1] * arr[0] * arr[1]}`);
 */
 
-let num = +prompt('Number of arr');
-let arr = new Array(num);
+// let num = +prompt('Number of arr');
+// let arr = new Array(num);
 
-for (let i = 0; i < num; i++) {
-    arr[i] = +prompt(`num ${i + 1}`);
-}
+// for (let i = 0; i < num; i++) {
+//     arr[i] = +prompt(`num ${i + 1}`);
+// }
 
-console.log(arr);
+// console.log(arr);
 
 /*
 //cau a
@@ -190,23 +190,84 @@ let newArr = arr.reduce(bar, 1);
 console.log(newArr);
 */
 
-//cau k
-function foo(init, val, idx, arr) {
-    let count = 1;
-    if (val === 1 || val === 3 || val === 5 || val === 7) {
-        return init + val;
-    } else if (val === 2 || val === 4 || val === 6) {
-        return val;
+// //cau k
+// function foo(init, val, idx, arr) {
+//     let count = 1;
+//     if (val === 1 || val === 3 || val === 5 || val === 7) {
+//         return init + val;
+//     } else if (val === 2 || val === 4 || val === 6) {
+//         return val;
+//     }
+//     for (let i = 2; i < val / 2; i++) {
+//         if (val % i === 0) {
+//             return val;
+//         }
+//     }
+//     if (count === 1) {
+//         return init + val;
+//     }
+// }
+
+// let newArr = arr.reduce(foo, 0);
+// console.log(newArr);
+
+function handleSubmit(event) {
+    event.preventDefault();
+
+    let fn = document.querySelector('#fn');
+    let ln = document.querySelector('#ln');
+    let em = document.querySelector('#em');
+    let pass = document.querySelector('#pass');
+    let p = document.querySelector('#p');
+
+    let fn_str = fn.value;
+    let ln_str = ln.value;
+    let em_str = em.value;
+    let pass_str = pass.value;
+    let p_str = p.value;
+
+    
+    // if (!isValidPassword(pass_str)) {
+    //     alert("Mật khẩu không hợp lệ! Mật khẩu phải có ít nhất 6 kí tự, gồm ít nhất 1 kí tự in hoa, 1 kí tự thường và 1 chữ số.");
+    //     return;
+    // }
+
+    if (!isValidEmail(em_str)) {
+        alert("Email không hợp lệ!");
+        return false;
     }
-    for (let i = 2; i < val / 2; i++) {
-        if (val % i === 0) {
-            return val;
-        }
-    }
-    if (count === 1) {
-        return init + val;
-    }
+
+    console.log(`pass: ${pass_str}`);
+    console.log(`email: ${em_str}`);
 }
 
-let newArr = arr.reduce(foo, 0);
-console.log(newArr);
+function isValidPassword(password) {
+    if (password.length < 6) {
+        return false;
+    }
+
+   
+    if (!/[A-Z]/.test(password)) {
+        return false;
+    }
+
+    if (!/[a-z]/.test(password)) {
+        return false;
+    }
+
+    if (!/\d/.test(password)) {
+        return false;
+    }
+
+    return true;
+}
+
+function isValidEmail(email) {
+    return /^\w+\@\w+\.com$/.test(email);
+}
+
+// function checkPhone(phone) {
+//     if (phone.length == 0)
+
+let form = document.querySelector("form");
+form.addEventListener("submit", handleSubmit);
