@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Slideshow</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #image {
+            width: 20%;
+            height: auto;
+        }
+        
+        #slideshow {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+        }
+
+        .buttons button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="slideshow">
+        <img id="image" src="img/1.jpg" alt="Slideshow Image">
+    </div>
+
+    <div class="buttons">
+        <button id="first">First</button>
+        <button id="previous">Previous</button>
+        <button id="next">Next</button>
+        <button id="last">Last</button>
+    </div>
+
+    <script src="lab8_bai1.js"></script>
+</body>
+</html>
