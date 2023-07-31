@@ -139,7 +139,7 @@ body a {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 50%;
-    transform: translate(30px,-50%);
+    transform: translate(30px, -50%);
     z-index: 999;
     display: flex;
     align-items: center;
@@ -154,6 +154,7 @@ body a {
 .slider_left {
     left: -25px;
 }
+
 .slider_rignt {
     right: -25px;
 }
@@ -235,6 +236,37 @@ body a {
     font-size: 20px;
 }
 
+.product .product-info h2 span {
+    font-size: 25px;
+}
+
+.countdown-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 3px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0 5px gray;
+    width: 110px;
+    margin: 10px 0;
+}
+
+.countdown-item {
+    margin: 5px;
+}
+
+.countdown-text {
+    font-size: 18px;
+    margin: 0;
+}
+
+.countdown-label {
+    font-size: 8px;
+    margin: 0;
+}
+
 .product .product-info .quantity {
     border-top: 2px dashed rgb(255, 135, 155);
 }
@@ -285,6 +317,7 @@ body a {
     padding-top: 15px;
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .product .product-info .cart:hover {
@@ -292,14 +325,14 @@ body a {
     border: 1px solid pink;
 }
 
-.product .product-info .cart a {
+.product .product-info .cart span {
     text-decoration: none;
     color: white;
     padding: 10px 100px;
     padding-left: 150px;
 }
 
-.product .product-info .cart:hover a {
+.product .product-info .cart:hover span {
     color: pink;
 }
 

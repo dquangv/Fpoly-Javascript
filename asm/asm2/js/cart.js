@@ -1,51 +1,36 @@
-let minusButton = document.querySelector('.fa-minus');
-let plusButton = document.querySelector('.fa-plus');
-let soluong = document.querySelector('.quantity').querySelector('input');
+let cartTable = document.querySelector('#cartTable');
 
-adjustQuantity();
+cartTable.innerHTML = `
+    <thead>
+        <tr>
+            <th>Sản phẩm</th>
+            <th></th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+`;
 
-function adjustQuantity() {
-    minusButton.addEventListener('click', function () {
-        let value = parseInt(soluong.value);
-        if (value !== 1) {
-            value -= 1;
-            soluong.value = value;
-        }
-    });
-    plusButton.addEventListener('click', function () {
-        let value = parseInt(soluong.value);
-        value += 1;
-        soluong.value = value;
-    });
-}
 
-class Product {
-    constructor(img, name, price) {
-        this.img = img;
-        this.name = name;
-        this.price = price;
-    }
-}
 
-let productsData = [
-    new Product("pic/sp1.jpg", "Kem dưỡng ẩm L'Occitane Pivoine", 840000),
-    new Product("pic/sp2.jpg", "Kem lót Burberry Fresh Glow", 960000),
-    new Product("pic/sp3.jpg", "Nước hoa Chloé Eau de Parfum", 1500000),
-    new Product("pic/sp4.jpg", "Nước hoa Lancôme La Vie Est", 1240000),
-    new Product("pic/sp5.jpg", "Dung dịch giúp loại bỏ sơn móng", 145000),
-    new Product("pic/sp6.jpg", "Tinh chất dưỡng da SK-II Facial", 4100000),
-    new Product("pic/sp7.jpg", "Dầu dưỡng da Phytoceuticals Argan", 169000),
-    new Product("pic/sp8.jpg", "Son dưỡng Tonymoly Mini Cherry", 200000)
-];
+function displayCartItems() {
+    let cartList = cartTable.querySelector('tbody');
 
-let cartTable = document.querySelector('#cartTable').querySelector('tbody');
+    cartList.innerHTML = '';
 
-let product = productsData.map(product => {
-    return `
-    <tr>
-        <td><img src=${product.img} alt="" style="width: 100px;"></td>
-        <td>${product.name}</td>
-        <td style="color: rgb(244, 121, 141);">${product.price}₫</td>
+    let textProduct = sessionStorage.getItem('productsJSON');
+    let products = JSON.parse(textProduct) || [];
+
+    products.forEach(item => {
+        let tr = document.createElement('tr');
+
+        tr.innerHTML = `
+        <td><img src=${item[0]} alt="" style="width: 100px;"></td>
+        <td>${item[1]}</td>
+        <td style="color: rgb(244, 121, 141);">${item[2]}đ</td>
         <td>
             <div class="num-count">
                 <i class="fa-solid fa-minus" style="font-size: 15px;"></i>
@@ -53,8 +38,53 @@ let product = productsData.map(product => {
                 <i class="fa-solid fa-plus" style="font-size: 15px;"></i>
             </div>
         </td>
-        <td style="color: rgb(244, 121, 141);">${product.price}₫</td>
-    </tr>
-`});
+        <td style="color: rgb(244, 121, 141);">${item[2]}đ</td>
+        `;
 
-cartTable.innerHTML = product.join('');
+        cartList.append(tr);
+    });
+
+    let textProducts = sessionStorage.getItem('productJSON');
+    let product = JSON.parse(textProducts) || [];
+    let tr = document.createElement('tr');
+
+    tr.innerHTML = `
+        <td><img src=${product[0]} alt="" style="width: 100px;"></td>
+        <td>${product[1]}</td>
+        <td style="color: rgb(244, 121, 141);">${product[2]}đ</td>
+        <td>
+            <div class="num-count">
+                <i class="fa-solid fa-minus" style="font-size: 15px;"></i>
+                <p>${product[3]}</p>
+                <i class="fa-solid fa-plus" style="font-size: 15px;"></i>
+            </div>
+        </td>
+        <td style="color: rgb(244, 121, 141);">${product[2]}đ</td>
+        `;
+
+    cartList.append(tr);
+}
+
+displayCartItems();
+
+let rowProducts = document.querySelector('#cartTable').querySelector('tbody').querySelectorAll('tr');
+
+rowProducts.forEach(row => {
+    let minusButton = row.querySelector('.fa-minus');
+    let plusButton = row.querySelector('.fa-plus');
+    let soluong = row.querySelector('p');
+
+    minusButton.addEventListener('click', function () {
+        let value = parseInt(soluong.textContent);
+        if (value !== 1) {
+            value -= 1;
+            soluong.textContent = value;
+        }
+    });
+    plusButton.addEventListener('click', function () {
+        let value = parseInt(soluong.textContent);
+        value += 1;
+        soluong.textContent = value;
+    });
+});
+

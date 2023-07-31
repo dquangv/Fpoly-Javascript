@@ -6,9 +6,13 @@ let phone = document.querySelector('#phoneNumber');
 let form = document.querySelector('#myForm');
 
 form.addEventListener('submit', function(event) {
-    //chống tự động load lại trang
-    event.preventDefault();
-    validateForm();
+    if (validateForm()) {
+        validateForm();
+    } else {
+        //chống tự động load lại trang
+        event.preventDefault();
+        validateForm();
+    }
 });
 
 function validateForm() {
@@ -19,19 +23,22 @@ function validateForm() {
     document.querySelector('#errorPassword').textContent = '';
     document.querySelector('#errorPhoneNumber').textContent = '';
 
-    checkName();
-    checkEmail();
-    checkPassword();
-    checkPhone();
+    if (checkName() || checkEmail() || checkPassword() || checkPhone()) {
+        return false;
+    }
+
+    return true;
 }
 
 function checkName() {
     if (firstName.value === '') {
         document.querySelector('#errorFirstName').textContent = 'Please enter your first name';
+        return true;
     }
 
     if (lastName.value === '') {
         document.querySelector('#errorLastName').textContent = 'Please enter your last name';
+        return true;
     }
 }
 
@@ -39,6 +46,7 @@ function checkEmail() {
     //kiểm tra dạng string@string.com
     if (!/^\w+@\w+.com$/.test(email.value)) {
         document.querySelector('#errorEmail').textContent = 'Your email is not valid';
+        return true;
     }
 }
 
@@ -46,6 +54,7 @@ function checkPassword() {
     //dùng Positive Lookahead (?=) để kiểm tra đồng thời các điều kiện dạng RegEx và các ký tự không bị tiêu thụ sau khi kiểm tra
     if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,}/.test(password.value)) {
         document.querySelector('#errorPassword').textContent = 'Please enter a combination of at least six numbers, lowercase letters and capitalize letters';
+        return true;
     }
 }
 

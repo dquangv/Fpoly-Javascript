@@ -211,7 +211,7 @@ body a {
 .cart {
     max-width: 1200px;
     margin: 40px auto;
-    height: 380px;
+    /* height: 380px; */
 }
 
 .cart>* {
@@ -241,6 +241,14 @@ body a {
     border-left: 1px solid gray;
     border-right: 1px solid gray;
     color: black;
+}
+
+.cart .product .num-count .fa-minus, .cart .product .num-count .fa-plus {
+    cursor: pointer;
+}
+
+.cart td {
+    padding: 0 10px;
 }
 
 .sum-product {

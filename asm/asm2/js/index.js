@@ -1,25 +1,36 @@
-<!DOCTYPE html>
+class Product {
+    constructor(detail, img, name, price) {
+        this.detail = detail;
+        this.img = img;
+        this.name = name;
+        this.price = price;
+    }
+}
 
-<html>
+let productsBestSeller1Data = [
+    new Product("product1.html", "pic/sp1.jpg", "Kem dưỡng ẩm L'Occitane Pivoine", 840000),
+    new Product("product2.html", "pic/sp2.webp", "Kem lót Burberry Fresh Glow", 960000),
+    new Product("product3.html", "pic/sp3.webp", "Nước hoa Chloé Eau de Parfum", 1500000),
+    new Product("product4.html", "pic/sp4.webp", "Nước hoa Lancôme La Vie Est", 1240000)
+];
 
-<head>
-    <title>skdVIETNAM</title>
-    <link rel="icon" href="pic/logo(1).jpg">
-    <link rel="stylesheet" href="css/product.css">
-    <link rel="stylesheet" href="css/fontawesome-free-6.4.0-web/css/all.css">
-</head>
+let productsBestSeller2Data = [
+    new Product("product5.html", "pic/sp5.webp", "Dung dịch giúp loại bỏ sơn móng", 145000),
+    new Product("product6.html", "pic/sp6.webp", "Tinh chất dưỡng da SK-II Facial", 4100000),
+    new Product("product7.html", "pic/sp7.webp", "Dầu dưỡng da Phytoceuticals Argan", 169000),
+    new Product("product8.html", "pic/sp8.webp", "Son dưỡng Tonymoly Mini Cherry", 200000)
+];
 
-<body>
+let body = document.querySelector('body');
+body.innerHTML = `
     <div class="promo_bar">
         <marquee behavior="" direction=""><strong>Nhận ưu đãi 500.000đ khi thanh toán hoá đơn trên 5 triệu</strong>
         </marquee>
     </div>
 
     <div class="menu">
-
         <div class="menu-left">
             <div class="logo"><a href="index.html">skdVIETNAM</a></div>
-
             <div class="nav">
                 <ul>
                     <li>
@@ -31,7 +42,6 @@
                             <li><a href="#">Dụng cụ massage và trị liệu</a></li>
                         </ul>
                     </li>
-
                     <li>
                         <a href="#">LÀM ĐẸP</a>
                         <ul>
@@ -93,49 +103,7 @@
 
     </div>
 
-    <div class="product">
-        <div class="product-img">
-            <img src="pic/sp1.jpg" alt="">
-        </div>
-        <div class="product-info">
-            <h1>Kem dưỡng ẩm L'Occitane Pivoine</h1>
-            <span>Thương hiệu: </span>
-            <span style="color: rgb(255, 135, 155)">L'Occitane</span> |
-            <span>Tình trang: </span>
-            <span style="color: rgb(255, 135, 155)">Còn hàng</span>
-            <div class="countdown-container">
-                <div class="countdown-item">
-                    <p class="countdown-text" id="days"></p>
-                    <p class="countdown-label">Ngày</p>
-                </div>
-                <div class="countdown-item">
-                    <p class="countdown-text" id="hours"></p>
-                    <p class="countdown-label">Giờ</p>
-                </div>
-                <div class="countdown-item">
-                    <p class="countdown-text" id="minutes"></p>
-                    <p class="countdown-label">Phút</p>
-                </div>
-                <div class="countdown-item">
-                    <p class="countdown-text" id="seconds"></p>
-                    <p class="countdown-label">Giây</p>
-                </div>
-            </div>
-            <h2 style="color: rgb(255, 135, 155)"><del style="color: gray">840000đ</del> <span>420000đ</span></h2>
-            <div class="quantity">
-                <h5>Số lượng:</h5>
-                <div class="num-count">
-                    <i class="fa-solid fa-minus"></i>
-                    <input type="number" value="1">
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-            </div>
-            <div class="cart"><span>Cho vào giỏ hàng</span></div>
-            <p id="confirm"></p>
-            <h6>Gọi đặt mua: <span
-                    style="font-size: 18px; color: rgb(255, 135, 155); font-weight: 900;">0909799998</span> để nhanh
-                chóng đặt hàng</h6>
-        </div>
+    <div class="product-index" id="cartTable">
     </div>
 
     <footer>
@@ -202,10 +170,82 @@
         </div>
         <div class="copyright">&copy; skdVIETNAM 2023, All Rights Reserved.</div>
     </footer>
-    <script src="js/countdownclock.js"></script>
-    <script src="js/product.js"></script>
-    <script src="js/slider.js"></script>
-    <script src="https://uhchat.net/code.php?f=3c5abe"></script>
-</body>
+    `
 
-</html>
+let index = document.querySelector('.product-index');
+index.innerHTML = `
+    <h1>Sản phẩm bán chạy</h1>
+    <div class="best-seller1">
+    </div>
+    <div class="best-seller2">
+    </div>
+    `;
+
+let product = productsBestSeller1Data.map(product => {
+    return `
+    <div class="column">
+            <div class="detail">
+                <a href=${product.detail}>Click for detail</a>
+            </div>
+            <div class="buttonAddCart">Add to Cart</div>
+            <div class="san-pham">
+                <img src=${product.img} />
+                <div class="ten">${product.name}</div>
+                <div class="gia">${product.price}đ</div>
+            </div>
+        </div>
+    `;
+});
+
+index.querySelector('.best-seller1').innerHTML = product.join('');
+
+product = productsBestSeller2Data.map(product => {
+    return `
+    <div class="column">
+        <div class="detail">
+            <a href=${product.detail}>Click for detail</a>
+        </div>
+        <div class="buttonAddCart">Add to Cart</div>
+        <div class="san-pham">
+            <img src=${product.img} />
+            <div class="ten">${product.name}</div>
+            <div class="gia">${product.price}đ</div>
+        </div>
+    </div>
+`
+});
+
+index.querySelector('.best-seller2').innerHTML = product.join('');
+
+let addCart = body.querySelectorAll('.buttonAddCart');
+
+addCart.forEach(button => {
+    let colummnProduct = button.parentNode;
+
+    let img = colummnProduct.querySelector('img');
+    let indexSrcImg = img.src.indexOf('pic/');
+    let srcImg = img.src.substring(indexSrcImg);
+
+    let name = colummnProduct.querySelector('.ten').textContent;
+
+    let price = parseFloat(colummnProduct.querySelector('.gia').textContent.split('đ')[0]);
+
+    button.addEventListener('click', () => addToCart(srcImg, name, price));
+});
+
+let cartProducts = [];
+
+function addToCart(srcImg, name, price) {
+    // let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
+    let infoProduct = [];
+    infoProduct.push(srcImg, name, price);
+    cartProducts.push(infoProduct);
+
+    let productsJSON = JSON.stringify(cartProducts);
+    sessionStorage.setItem('productsJSON', productsJSON);
+
+    alert('Bạn đã thêm vào giỏ hàng');
+    // console.log(productsJSON);
+    // console.log(cartProducts);
+
+}
