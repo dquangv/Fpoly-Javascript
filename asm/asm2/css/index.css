@@ -255,6 +255,7 @@ h1 {
 
 .detail a {
     color: white;
+    width: 100px;
 }
 
 .san-pham {

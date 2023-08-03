@@ -20,6 +20,7 @@ function adjustQuantity() {
 }
 
 let addCart = document.querySelector('.cart');
+console.log(addCart);
 
 addCart.addEventListener('click', function () {
     let product = addCart.parentNode.parentNode;
@@ -27,10 +28,11 @@ addCart.addEventListener('click', function () {
     let indexSrcImg = img.src.indexOf('pic/');
     let srcImg = img.src.substring(indexSrcImg);
     let name = product.querySelector('h1').textContent;
-    let price = parseFloat(product.querySelector('h2').querySelector('span').textContent.split('đ')[0]);
+    let price = parseFloat(product.querySelector('h2').textContent.split('đ')[0]);
     let soLuong = parseInt(soluong.value);
     let infoProduct = [];
 
+    console.log(product);
     infoProduct.push(srcImg, name, price, soLuong);
 
     let productsJSON = JSON.stringify(infoProduct);

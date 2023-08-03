@@ -184,16 +184,16 @@ index.innerHTML = `
 let product = productsBestSeller1Data.map(product => {
     return `
     <div class="column">
-            <div class="detail">
-                <a href=${product.detail}>Click for detail</a>
-            </div>
+            
+            
+        <a href=${product.detail}><div class="detail">Click for detail</div></a>
             <div class="buttonAddCart">Add to Cart</div>
             <div class="san-pham">
                 <img src=${product.img} />
                 <div class="ten">${product.name}</div>
                 <div class="gia">${product.price}đ</div>
             </div>
-        </div>
+    </div>
     `;
 });
 
