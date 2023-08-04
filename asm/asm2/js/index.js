@@ -184,9 +184,9 @@ index.innerHTML = `
 let product = productsBestSeller1Data.map(product => {
     return `
     <div class="column">
-            
-            
-        <a href=${product.detail}><div class="detail">Click for detail</div></a>
+        <a href=${product.detail}>
+            <div class="detail">Click for detail</div>
+        </a>
             <div class="buttonAddCart">Add to Cart</div>
             <div class="san-pham">
                 <img src=${product.img} />
@@ -202,9 +202,9 @@ index.querySelector('.best-seller1').innerHTML = product.join('');
 product = productsBestSeller2Data.map(product => {
     return `
     <div class="column">
-        <div class="detail">
-            <a href=${product.detail}>Click for detail</a>
-        </div>
+        <a href=${product.detail}>
+            <div class="detail">Click for detail</div>
+        </a>
         <div class="buttonAddCart">Add to Cart</div>
         <div class="san-pham">
             <img src=${product.img} />

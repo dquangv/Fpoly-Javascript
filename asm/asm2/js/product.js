@@ -22,6 +22,8 @@ function adjustQuantity() {
 let addCart = document.querySelector('.cart');
 console.log(addCart);
 
+
+
 addCart.addEventListener('click', function () {
     let product = addCart.parentNode.parentNode;
     let img = product.querySelector('img');
@@ -30,13 +32,13 @@ addCart.addEventListener('click', function () {
     let name = product.querySelector('h1').textContent;
     let price = parseFloat(product.querySelector('h2').textContent.split('đ')[0]);
     let soLuong = parseInt(soluong.value);
-    let infoProduct = [];
+    // let infoProduct = [];
+    let productJSON = JSON.parse(sessionStorage.getItem('productJSON')) || [];
 
-    console.log(product);
-    infoProduct.push(srcImg, name, price, soLuong);
+    productJSON.push(srcImg, name, price, soLuong);
+    // productJSON.push(infoProduct);
 
-    let productsJSON = JSON.stringify(infoProduct);
-    sessionStorage.setItem('productJSON', productsJSON);
+    sessionStorage.setItem('productJSON', JSON.stringify(productJSON));
 
     alert('Bạn đã thêm vào giỏ hàng');
 });
