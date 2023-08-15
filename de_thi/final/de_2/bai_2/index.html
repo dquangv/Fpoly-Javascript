@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+	<!-- Demo CSS (No need to include it into your project) -->
+	<link rel="stylesheet" href="css/demo.css">
+  
+  </head>
+  <body>
+ <header class="intro">
+ <h1>Contact Form with Validation Example</h1>
+ <p>Pure JavaScript form validation with custom error messages.</p>
+
+ 
+ </header>
+  
+      
+ <main>
+     <!-- Start DEMO HTML (Use the following code into your project)-->
+ <div class="form-container">
+  <h1>Contact Form</h1>
+  <form name="contactForm" method="post" action="#">
+    <label for="name">* Name</label>
+    <input type="text" id="name" name="name" placeholder="Your name" >
+    <span class="errors"></span><br>
+
+    <label for="email">* Email</label>
+    <input type="text" placeholder="Email address" id="email" name="email" >
+    <span class="errors"></span><br>
+
+    <label for="phone">* Phone</label>
+    <input type="text" placeholder="Phone number" id="phone" name="phone" >
+    <span class="errors"></span><br>
+    
+    <label for="subject">* Message</label>
+    <textarea placeholder="Your message" cols="132" rows="5" name="subject" id="subject"></textarea>
+    <span class="errors"></span><br>
+
+    <button type="submit" value="Submit">Submit</button>
+  </form>
+</div>    
+     <!-- END EDMO HTML (Happy Coding!)-->
+ </main>
+ 
+      
+  <footer class="credit">Author: Zaine Kingi - Distributed By: <a title="Awesome web design code & scripts" href="https://www.codehim.com?source=demo-page" target="_blank">CodeHim</a></footer>
+  
+  <!-- Script JS -->
+  <script src="code.js"></script>
+   
+  </body>
+</html>
