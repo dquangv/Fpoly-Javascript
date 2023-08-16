@@ -1,5 +1,6 @@
 let cartTable = document.querySelector('#cartTable');
 
+// draw table
 cartTable.innerHTML = `
     <thead>
         <tr>
@@ -17,14 +18,18 @@ cartTable.innerHTML = `
 let sumTotalTemp = parseFloat(document.querySelector('.sum-product').querySelectorAll('tr')[0].querySelectorAll('td')[1].textContent.split('đ')[0]);
 let sumTotal = document.querySelector('.sum-product').querySelectorAll('tr')[1].querySelectorAll('td')[1].textContent;
 
+
 function displayCartItems() {
     let cartList = cartTable.querySelector('tbody');
 
     cartList.innerHTML = '';
 
+    // get data from session storage if already added to cart (data of products from index page)
     let textProduct = sessionStorage.getItem('productsJSON');
+    // transform JSON to JS array or empty array if not added to cart
     let products = JSON.parse(textProduct) || [];
 
+    // put elements of products array into row of table
     products.forEach(item => {
         let tr = document.createElement('tr');
 
@@ -43,19 +48,22 @@ function displayCartItems() {
         <td><button class="delete">Xoá</button></td>  
         `;
 
+        // add row to the table
         cartList.append(tr);
-        // sumTotalTemp += item[2];
-        // document.querySelector('.sum-product').querySelectorAll('tr')[0].querySelectorAll('td')[1].textContent = `${sumTotal}đ`;
-        // sumTotal = `${sumTotal}đ`;
 
+        // add delete button
         let delButton = tr.querySelector('.delete');
         delButton.addEventListener('click', deleteProduct);
     });
 
+    // get data from session storage if already added to cart (data of products from product page)
     let textProducts = sessionStorage.getItem('productJSON');
+    // transform JSON to JS array or empty array if not added to cart
     let product = JSON.parse(textProducts) || [];
     let tr = document.createElement('tr');
 
+    // just put the product data into the row of the table if already added to cart
+    // withou if statement, page auto put undefined into the row of the table
     if (product.length > 0) {
         tr.innerHTML = `
             <td><img src=${product[0]} alt="" style="width: 100px;"></td>
@@ -76,16 +84,13 @@ function displayCartItems() {
         let delButton = tr.querySelector('.delete');
         delButton.addEventListener('click', deleteProduct);
     }
-    // sumTotalTemp += product[2];
-    // document.querySelector('.sum-product').querySelectorAll('tr')[0].querySelectorAll('td')[1].textContent = `${sumTotal}đ`;
-    // sumTotal = `${sumTotal}đ`;
-
 }
 
 displayCartItems();
 
 let rowProducts = document.querySelector('#cartTable').querySelector('tbody').querySelectorAll('tr');
 
+//add minus and plus buttons after added row to the table
 rowProducts.forEach(row => {
     let minusButton = row.querySelector('.fa-minus');
     let plusButton = row.querySelector('.fa-plus');
@@ -95,66 +100,61 @@ rowProducts.forEach(row => {
 
     minusButton.addEventListener('click', function () {
         let value = parseInt(soluong.textContent);
+
+        //min = 1
         if (value !== 1) {
             value -= 1;
             soluong.textContent = value;
             rowTotal = value * price;
-            console.log(value);
-            console.log(price);
-            console.log(rowTotal);
         }
 
         row.querySelector('.rowTotal').textContent = `${rowTotal}đ`;
+
+        // update total price after clicking the minus button
         sumHandler();
     });
 
     plusButton.addEventListener('click', function () {
         let value = parseInt(soluong.textContent);
+
         value += 1;
         soluong.textContent = value;
         rowTotal = value * price;
         row.querySelector('.rowTotal').textContent = `${rowTotal}đ`;
+
+        // update total price after clicking the plus button
         sumHandler();
     });
 });
 
-
-function sumHandler(plus) {
+// calculate total price
+function sumHandler() {
     let trTable = document.querySelector('#cartTable').querySelector('tbody').querySelectorAll('tr');
     let TotalTemp = 0;
 
+    // add price of each row to total
     for (let i = 0; i < trTable.length; i++) {
         let rowPrice = parseFloat(trTable[i].querySelector('.rowTotal').textContent.split('đ')[0]);
-        // if (plus) {
-        //     TotalTemp += rowPrice;
-        // } else {
-        //     TotalTemp -= rowPrice;
-        // }
-
         TotalTemp += rowPrice;
-
     }
 
+    // temp total
     document.querySelector('.sum-product').querySelectorAll('tr')[0].querySelectorAll('td')[1].textContent = `${TotalTemp}đ`;
+
+    // total
     document.querySelector('.sum-product').querySelectorAll('tr')[1].querySelectorAll('td')[1].textContent = `${TotalTemp}đ`;
 }
 
-
+//automatically update when loading the page
 sumHandler();
 
 function deleteProduct(event) {
-    // button "xoá"
     let delButton = event.target;
 
-    // tag <tr> của dòng click nút "xoá"
     let rowProduct = delButton.parentNode.parentNode;
 
-    // giá của sản phẩm click nút "xoá"
-    let productPrice = parseFloat(rowProduct.querySelectorAll('td')[1].textContent.split('$')[1]);
-
-    // xoá sản phẩm
     rowProduct.remove();
 
-    // trừ vào tổng tiền
+    // update total after deleting product
     sumHandler();
 }

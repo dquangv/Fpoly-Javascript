@@ -21,6 +21,7 @@ let productsBestSeller2Data = [
     new Product("product8.html", "pic/sp8.webp", "Son dưỡng Tonymoly Mini Cherry", 200000)
 ];
 
+//draw the background into index page
 let body = document.querySelector('body');
 body.innerHTML = `
     <div class="promo_bar">
@@ -171,7 +172,7 @@ body.innerHTML = `
         <div class="copyright">&copy; skdVIETNAM 2023, All Rights Reserved.</div>
     </footer>
     `
-
+// draw 2 sections of product
 let index = document.querySelector('.product-index');
 index.innerHTML = `
     <h1>Sản phẩm bán chạy</h1>
@@ -181,6 +182,7 @@ index.innerHTML = `
     </div>
     `;
 
+// link data of products 1 to each info product
 let product = productsBestSeller1Data.map(product => {
     return `
     <div class="column">
@@ -197,8 +199,10 @@ let product = productsBestSeller1Data.map(product => {
     `;
 });
 
+// put all info products 1 into the page
 index.querySelector('.best-seller1').innerHTML = product.join('');
 
+// link data of products 2 to each info product
 product = productsBestSeller2Data.map(product => {
     return `
     <div class="column">
@@ -215,10 +219,12 @@ product = productsBestSeller2Data.map(product => {
 `
 });
 
+// put all info products 1 into the page
 index.querySelector('.best-seller2').innerHTML = product.join('');
 
 let addCart = body.querySelectorAll('.buttonAddCart');
 
+// add to cart function for each product
 addCart.forEach(button => {
     let colummnProduct = button.parentNode;
 
@@ -230,22 +236,23 @@ addCart.forEach(button => {
 
     let price = parseFloat(colummnProduct.querySelector('.gia').textContent.split('đ')[0]);
 
+    // save img, name and price of product when click addtocart button
     button.addEventListener('click', () => addToCart(srcImg, name, price));
 });
 
+// cart array to contain data products
 let cartProducts = [];
 
 function addToCart(srcImg, name, price) {
-    // let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
+    // img, name and price of a specific product for 1 array
     let infoProduct = [];
     infoProduct.push(srcImg, name, price);
     cartProducts.push(infoProduct);
 
+    // transform JS array to JSON
     let productsJSON = JSON.stringify(cartProducts);
+    // put data into session storage
     sessionStorage.setItem('productsJSON', productsJSON);
 
     alert('Bạn đã thêm vào giỏ hàng');
-    // console.log(productsJSON);
-    // console.log(cartProducts);
-
 }
